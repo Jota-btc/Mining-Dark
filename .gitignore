@@ -1,0 +1,41 @@
+# ── Virtual environment ───────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Python cache ──────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ── Logs (keep directory via .gitkeep) ───────────────────────────────────────
+logs/*.log
+logs/*.log.*
+
+# ── Scanner output (keep directory via .gitkeep) ──────────────────────────────
+found_wallets/*.json
+found_wallets/*.csv
+found_wallets/*.txt
+
+# ── UTXO data (Bitcoin Core exports — can be very large) ─────────────────────
+utxo_data/*
+!utxo_data/.gitkeep
+utxo_dump_tmp.csv
+
+# ── Config overrides with sensitive data ─────────────────────────────────────
+config.local.yaml
+.env
+*.env
+
+# ── OS / editor artefacts ────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.egg-info/
+dist/
+build/

@@ -1,0 +1,61 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+#  Bitcoin Balance Scanner Pro — Configuration
+# ═══════════════════════════════════════════════════════════════════════════════
+
+scanner:
+  # Key generation mode: "random" | "hd"
+  mode: "random"
+
+  # Number of async worker tasks checking balances in parallel
+  workers: 10
+
+  # Internal key-generation queue size (tune for memory vs throughput)
+  queue_size: 500
+
+  # Address types to generate and check for every private key.
+  # Options: p2pkh | p2pkh_uncompressed | p2sh_p2wpkh | p2wpkh | p2wsh | p2tr
+  address_types:
+    - p2pkh
+    - p2pkh_uncompressed
+    - p2sh_p2wpkh
+    - p2wpkh
+    - p2wsh
+    - p2tr
+
+  # Only save wallets whose CONFIRMED balance (satoshis) exceeds this threshold
+  min_balance_satoshis: 0
+
+hd_wallet:
+  # Used only when scanner.mode = "hd"
+  derivation_paths:
+    - "m/44'/0'/0'/0/{i}"   # BIP44 Legacy
+    - "m/49'/0'/0'/0/{i}"   # BIP49 Nested SegWit
+    - "m/84'/0'/0'/0/{i}"   # BIP84 Native SegWit
+    - "m/86'/0'/0'/0/{i}"   # BIP86 Taproot
+  # Number of child keys to derive per master key (gap limit padrão = 20)
+  child_count: 20
+
+output:
+  # Directory for wallets found with balance
+  found_wallets_dir: "found_wallets"
+  # Also save a summary CSV
+  save_csv: true
+  # Pretty-print JSON files
+  json_indent: 2
+
+logging:
+  # Log level: TRACE | DEBUG | INFO | WARNING | ERROR
+  level: "INFO"
+  logs_dir: "logs"
+  # Max log file size before rotation
+  rotation: "50 MB"
+  # How long to keep old log files
+  retention: "7 days"
+
+ui:
+  # Refresh rate of the live dashboard (frames per second)
+  refresh_fps: 4
+  # Number of recent addresses to show in the live table
+  recent_table_rows: 15
+  # Theme: "dark" | "light"
+  theme: "dark"
